@@ -15,4 +15,10 @@ class StudentController extends AbstractController
             'controller_name' => 'StudentController',
         ]);
     }
+
+
+    #[Route('/students', name:'app_index')]
+    public function index2(): Response{
+        return new Response("Bonjour Mes Etudiants");
+    } 
 }
