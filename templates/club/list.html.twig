@@ -33,7 +33,7 @@
 
 <ul>
 {% for i in formations %}
-{% if i.Description == "formation theorique" %}
+{% if "theorique" in i.Description %}
 <li> {{ i.Titre }} </li>
 {% endif %}
 {% endfor %}
@@ -61,6 +61,18 @@
 <h5> On a  : {{ partcip }} participants</h5>
 </div>
 
+{% if formations is not defined %}
+
+<p> le tableau n'existe pas </p> </br>
+
+{% endif %}
+
+
+{% if  formations is empty  %}
+
+<p> le tableau est vide </p>
+
+{% endif %}
 
 {% endif %}
 
