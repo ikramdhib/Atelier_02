@@ -9,12 +9,18 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/server/htdocs/FirstProject/src/Controller/StudentController.php'|file_link(0) }}">src/Controller/StudentController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/server/htdocs/FirstProject/templates/student/index.html.twig'|file_link(0) }}">templates/student/index.html.twig</a></code></li>
-    </ul>
+    <h1>List des etudien✅</h1>
+    <table border="1">
+    
+    {% for s in students %}
+        <tr>
+        <td> {{ s.id }} </td>
+        <td> {{ s.usernamr }} </td>
+        <td> {{ s.email }} </td>
+        <td> <a href="{{ path('app_deleteg',{'id':s.id}) }}"> DELETE</a> </td>
+        </tr>
+       {% endfor %} 
+        
+    </table>
 </div>
 {% endblock %}
