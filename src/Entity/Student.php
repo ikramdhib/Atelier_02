@@ -20,7 +20,7 @@ class Student
     private ?string $email = null;
 
     #[ORM\ManyToOne(inversedBy: 'students')]
-    private ?classroom $idclassroom = null;
+    private ?Classroom $idclassroom = null;
 
     public function getId(): ?int
     {

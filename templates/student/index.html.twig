@@ -17,6 +17,7 @@
         <td> {{ s.id }} </td>
         <td> {{ s.usernamr }} </td>
         <td> {{ s.email }} </td>
+        <td> {{ s.idClassroom.name }} </td>
         <td> <a href="{{ path('app_deleteg',{'id':s.id}) }}"> DELETE</a> </td>
         </tr>
        {% endfor %} 

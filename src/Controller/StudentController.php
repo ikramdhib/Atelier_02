@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Student;
+use App\Form\StudentType;
 use App\Repository\StudentRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request ;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -55,21 +57,33 @@ class StudentController extends AbstractController
     }
 
 
-    #[Route('/addUser', name:'app_deleteg')]
-    public function addStudent(ManagerRegistry $mngr){
-
+    #[Route('/adduser', name:'app_adduser')]
+    public function addStudent(ManagerRegistry $mngr , Request $req ){
 
         $student = new Student();
-        $student->setUsernamr("hhkjhk");
+        $form=$this->createForm(StudentType::class,$student);
+        $form->handleRequest($req);
+
+
+        /*$student->setUsernamr("hhkjhk");
         $student->setEmail("koktooo@gmail.com");
+        */
+            if($form->isSubmitted()){
+                    $em=$mngr->getManager();
+
+                    $em->persist($student);
+                    $em->flush();
+            }
+            // return $this->redirectToRoute('app_student');
+                
+            /*  return $this->renderForm('Student/add.html.twig',[
+            'form'=>$form,
+                ]);*/
 
 
-        $em=$mngr->getManager();
-
-        $em->persist($student);
-        $em->flush();
-
-        return $this->redirectToRoute('app_student');
+        return $this->render('Student/add.html.twig',[
+            'form'=>$form->createView(),
+        ]);
 
     }
 
